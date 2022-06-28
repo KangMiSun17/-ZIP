@@ -20,7 +20,8 @@ function Login() {
   const setUserState = useSetRecoilState(userState);
   const navigate = useNavigate();
 
-  const loginUser = async () => {
+  const loginUser = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     try {
       const res = await postData("users/login", { email, password });
       setUserState(res.data);
@@ -33,7 +34,7 @@ function Login() {
   };
 
   return (
-    <RightContainer>
+    <RightContainer onSubmit={loginUser}>
       <Helmet>
         <title>로그인 - 분리수ZIP</title>
       </Helmet>

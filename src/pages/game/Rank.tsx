@@ -11,10 +11,13 @@ import {
   Top3Rank,
   ScoreText,
   NumberText,
+  Ranker,
 } from "../../styles/gameStyles/game";
 import { RankDataType } from "../../types/Game";
 import GoGameModal from "./GoGameModal";
 import { customTostify } from "../../components/customTostify";
+
+const medal = ["🥇", "🥈", "🥉"];
 
 function Rank() {
   const navigate = useNavigate();
@@ -22,7 +25,6 @@ function Rank() {
   const [open, setOpen] = useState(false);
   const [rankList, setRankList] = useState<RankDataType[]>([]);
   const [loading, setLoading] = useState(false);
-  const medal = ["🥇", "🥈", "🥉"];
 
   const goGame = () => {
     if (isLogin) {
@@ -61,14 +63,20 @@ function Rank() {
       {rankList.map((list, index) =>
         index < 3 ? (
           <Top3Rank key={index} index={index}>
-            <NumberText font="1rem">{index < 4 ? medal[index] : 4}</NumberText>
-            <RankNameText>{list.username}님</RankNameText>
+            <Ranker>
+              <NumberText font="1rem">
+                {index < 4 ? medal[index] : 4}
+              </NumberText>
+              <RankNameText>{list.username}님</RankNameText>
+            </Ranker>
             <ScoreText>{list.topscore}점</ScoreText>
           </Top3Rank>
         ) : (
           <Top3Rank key={index} index={index} color="#c7ebff">
-            <NumberText>{index + 1}</NumberText>
-            <RankNameText>{list.username}님</RankNameText>
+            <Ranker>
+              <NumberText>{index + 1}</NumberText>
+              <RankNameText>{list.username}님</RankNameText>
+            </Ranker>
             <ScoreText>{list.topscore}점</ScoreText>
           </Top3Rank>
         ),

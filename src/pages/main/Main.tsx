@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useSetRecoilState } from "recoil";
 import { getData } from "../../api";
-import { newsState } from "../../stores/atoms";
+import { categorySelectedState, newsState } from "../../stores/atoms";
 import { MainContainer } from "../../styles/mainStyles/MainStyle";
 import AiSection from "./AiSection";
 import CategorySection from "./CategorySection";
@@ -14,8 +14,8 @@ import { customTostify } from "../../components/customTostify";
 function Main() {
   // main page component
   const [isLoading, setIsLoading] = useState(false);
-
   const setNews = useSetRecoilState(newsState);
+  const setIsSelected = useSetRecoilState(categorySelectedState);
 
   const getNews = async () => {
     try {
@@ -29,6 +29,7 @@ function Main() {
 
   useEffect(() => {
     getNews();
+    setIsSelected([]);
   }, []);
 
   if (!isLoading) {

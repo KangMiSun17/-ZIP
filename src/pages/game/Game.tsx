@@ -6,6 +6,7 @@ import {
   GameLevel,
   DragTrashContainer,
   DropTrashContainer,
+  GameDescription,
 } from "../../styles/gameStyles/game";
 import TrashZone from "./TrashZone";
 import { resetServerContext } from "react-beautiful-dnd";
@@ -31,7 +32,6 @@ export const initialState = {
     WIN: "win",
   },
   timeLeft: 30,
-  tree: { small: img.tree.small, middle: img.tree.middle, big: img.tree.big },
   gameLevel: 1,
 };
 
@@ -159,17 +159,19 @@ function Game() {
       )}
       {gameState === initialState.gameState.PLAYING && (
         <DragDropContext onDragEnd={onDragEnd}>
-          <GameContainer>
+          <GameContainer Img={img.levelImg[level - 1]}>
             <GameBar>
               <GameLevel>STAGE {level}</GameLevel>
-              <GameBox>
-                <span>SCORE</span>
-                <span>{score}</span>
-              </GameBox>
-              <GameBox>
-                <span>TIME</span>
-                <span>{timeLeft}</span>
-              </GameBox>
+              <GameDescription>
+                <GameBox>
+                  <span>SCORE</span>
+                  <span>{score}</span>
+                </GameBox>
+                <GameBox>
+                  <span>TIME</span>
+                  <span>{timeLeft}</span>
+                </GameBox>
+              </GameDescription>
             </GameBar>
             <DragTrashContainer>
               {trash.map((data, index) => (

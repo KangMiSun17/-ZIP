@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import MapTest from "../../components/MapTest";
+import MapContent from "../../components/MapContent";
 
 import { RobotType } from "../../types/Robot";
 
@@ -60,7 +60,7 @@ function AiResultMap() {
     } catch (err: any) {
       console.log(err);
       customTostify("error", err.message);
-      setError(err.response.data.message);
+      setError(err?.response?.data?.message);
     }
   };
 
@@ -82,7 +82,7 @@ function AiResultMap() {
       {error ? (
         <span>{error}</span>
       ) : (
-        <MapTest
+        <MapContent
           type="robot"
           props={robots}
           propsSelected={robotSelected}
@@ -92,7 +92,7 @@ function AiResultMap() {
           // currentLat={37.52606733350417}
           currentLon={longitude}
           currentLat={latitude}
-        ></MapTest>
+        ></MapContent>
       )}
     </>
   );

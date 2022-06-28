@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { Button } from "../ButtonStyles";
-import { img as Img } from "../../assets/imgImport";
 
-export const GameContainer = styled.div`
+export const GameContainer = styled.div<{ Img: string }>`
   padding: 3.3rem 1rem 0.1rem;
   margin: 0 auto;
   width: auto;
   height: auto;
 
-  background-image: url(${Img.gameBackground});
-  background-size: cover;
+  background-image: url(${(props) => props.Img});
+  background-size: 100% 100%;
 
   @media (min-width: 768px) {
     width: 60vw;
@@ -20,7 +19,7 @@ export const RankContainer = styled.div`
   width: unset;
   display: flex;
   justify-content: center;
-  margin: 0 2rem;
+  margin: 0 1.5rem;
   padding: 3rem 0;
   flex-wrap: wrap;
   background-color: white;
@@ -32,7 +31,7 @@ export const DragTrashContainer = styled.div`
 
   @media (min-width: 768px) {
     width: 60vw;
-    height: 18rem;
+    height: 16rem;
   }
 `;
 
@@ -118,7 +117,7 @@ export const RankTitleText = styled.p`
 export const Top3Rank = styled.div<{ color?: string; index: number }>`
   opacity: 0;
   margin-top: 0.7rem;
-  padding: 0.2rem 0.7rem;
+  padding: 0.7rem 1rem;
   width: 100%;
   background-color: ${(props) => (props.color ? props.color : "#65c8ff")};
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
@@ -144,18 +143,23 @@ export const Top3Rank = styled.div<{ color?: string; index: number }>`
   }
 `;
 
-export const RankNameText = styled.p`
-  font-size: 0.8rem;
-  text-align: left;
-  width: 75%;
+export const Ranker = styled.div`
+  display: flex;
+  align-items: center;
+  width: 70%;
 `;
 
-export const ScoreText = styled.p`
+export const RankNameText = styled.span`
+  font-size: 0.8rem;
+  text-align: left;
+`;
+
+export const ScoreText = styled.span`
   text-align: right;
   font-size: 0.8rem;
 `;
 
-export const NumberText = styled.p<{ font?: string }>`
+export const NumberText = styled.span<{ font?: string }>`
   text-align: center;
   font-size: ${(props) => (props.font ? props.font : "0.8rem")};
   margin-right: 0.3rem;
@@ -165,11 +169,22 @@ export const NumberText = styled.p<{ font?: string }>`
 export const GameBar = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const GameLevel = styled.span`
   color: white;
+  font-size: 0.8rem;
+
+  @media (min-width: 768px) {
+    margin-right: 0.3rem;
+    width: 4rem;
+  }
 `;
 
 export const GameBox = styled.div`
@@ -177,8 +192,16 @@ export const GameBox = styled.div`
   justify-content: space-between;
   padding: 0.2rem 0.4rem;
   color: white;
+  font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.16);
   border: 2px solid white;
   border-radius: 0.5rem;
-  width: 30%;
+  width: 40%;
+`;
+
+export const GameDescription = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  width: 100%;
 `;
