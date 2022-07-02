@@ -33,10 +33,10 @@ function Quiz() {
       setQuizzes(res.data);
       setCurrentQuiz([res.data[currentPage]]);
       setToPostAnswer([]);
+      setLoading(true);
     } catch {
       customToastify("error", "퀴즈 데이터를 불러오는데 실패했습니다.");
     }
-    setLoading(true);
   };
 
   useEffect(() => {
