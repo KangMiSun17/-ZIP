@@ -59,8 +59,8 @@ function QnADescription() {
       try {
         const res = await getData(`users/current`);
         setUser(res.data);
-      } catch {
-        console.log("Error: data get request fail");
+      } catch (err: any) {
+        console.log(err.response.data.message);
       }
     }
   };
@@ -69,7 +69,7 @@ function QnADescription() {
     try {
       await getData(`posts/${id}`).then((res) => setQna(res.data));
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
     setLoading(true);
   };

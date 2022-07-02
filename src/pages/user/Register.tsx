@@ -39,7 +39,7 @@ function Register() {
       customToastify("success", "가입 성공!");
       navigate("/users/login");
     } catch (err: any) {
-      customToastify("error", err.response.data.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 

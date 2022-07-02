@@ -30,7 +30,7 @@ function Item() {
       setTrash(res.data);
       setLoading(true);
     } catch (err: any) {
-      customToastify("error", err.message);
+      customToastify("error", err?.response?.data?.message);
     }
   };
 
