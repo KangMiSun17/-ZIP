@@ -51,7 +51,7 @@ function Quiz() {
     <QuizContainer>
       <QuestionCard />
       {toPostAnswer[currentPage] && openResult ? (
-        <div>이미 푼 문제입니다.</div>
+        <div>문제를 풀었습니다.</div>
       ) : (
         <>
           {type === "multipleChoice" && <MultiQuiz />}
