@@ -113,7 +113,6 @@ function QnADescription() {
       <BlackHr />
       <>
         {/* 현재 로그인한 사용자가 게시글의 작성자일 시 */}
-        {console.log(user?._id)}
         {user?._id === qna?.author._id && (
           <>
             <ButtonWrapper>

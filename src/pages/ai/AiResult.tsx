@@ -38,7 +38,7 @@ function AiResult() {
 
   const [situation, setSituation] = useRecoilState(AiSituationState);
 
-  const trashName = (trash: string) => {
+  const getTrashName = (trash: string) => {
     if (trash === "페트병") {
       return "투명 페트병";
     } else if (trash === "캔") {
@@ -56,9 +56,11 @@ function AiResult() {
 
   const getTrashInfo = async () => {
     try {
-      await getData(`trash?search=${trashName(result?.title)}`).then((res) => {
-        setTrashInfo(res.data);
-      });
+      await getData(`trash?search=${getTrashName(result?.title)}`).then(
+        (res) => {
+          setTrashInfo(res.data);
+        },
+      );
     } catch (err: any) {
       customToastify("error", err?.response?.data?.message);
     }
